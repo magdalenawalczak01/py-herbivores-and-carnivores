@@ -1,11 +1,14 @@
-class Animal:
-    alive = []
+from __future__ import annotations
 
-    def __init__(self, name: str) -> None:
+
+class Animal:
+    alive: list[Animal] = []
+
+    def __init__(self,
+                 name: str) -> None:
         self.name = name
         self.health = 100
         self.hidden = False
-        self.alive = True
         Animal.alive.append(self)
 
     def __repr__(self) -> str:
@@ -20,7 +23,9 @@ class Herbivore(Animal):
 
 
 class Carnivore(Animal):
-    def bite(self, herbivore: Herbivore) -> None:
+    def bite(self,
+             herbivore: Herbivore) \
+            -> None:
         if not isinstance(herbivore, Herbivore):
             return
         if herbivore.hidden:
@@ -28,5 +33,4 @@ class Carnivore(Animal):
         else:
             herbivore.health -= 50
             if herbivore.health <= 0:
-                herbivore.alive = False
                 Animal.alive.remove(herbivore)
