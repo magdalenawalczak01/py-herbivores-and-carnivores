@@ -6,8 +6,7 @@ class Animal:
 
     def __init__(
         self,
-        name: str,
-        health: int = 100
+        name: str
     ) -> None:
         self.name = name
         self.health = 100
